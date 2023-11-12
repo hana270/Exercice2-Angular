@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="text-center mt-4 mb-4">Ajouter {{ title }}</h1>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <input type="text" [(ngModel)]="note" placeholder="Saisir une note" class="form-control" />
+        <div class="input-group-append">
+          <button (click)="addNote()" class="btn btn-success buttt">Ajouter</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <input type="text" [(ngModel)]="searchPhrase" placeholder="Rechercher une note" class="form-control" />
+        <div class="input-group-append">
+          <button (click)="searchNotes()" class="btn btn-primary">Chercher</button>
+          <button (click)="toggleNotesVisibility()" class="btn btn-info">{{ showNotes ? 'Masquer les notes' : 'Afficher les notes' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="list-group" *ngIf="showNotes">
+    <li *ngFor="let note of filteredNotes; let i = index" class="list-group-item note-item" (mouseenter)="showButtons(i)" (mouseleave)="hideButtons(i)">
+      <span [style.color]="note.color" *ngIf="editingIndex !== i">{{ note.text }}</span>
+      <input type="text" [(ngModel)]="filteredNotes[i].text" *ngIf="editingIndex === i" class="form-control" />
+      <div class="btn-group mt-2">
+        <button class="btn btn-warning edit-button" (click)="editNote(i)" *ngIf="showEdit[i] && editingIndex !== i">Éditer</button>
+        <button class="btn btn-success save-button" (click)="saveEdit(i)" *ngIf="editingIndex === i">Enregistrer</button>
+        <button class="btn btn-danger delete-button" (click)="deleteNote(i)" *ngIf="showDelete[i]">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+</div>
+

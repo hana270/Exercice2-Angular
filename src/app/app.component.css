@@ -1,0 +1,17 @@
+.butt{
+    display: inline-block;
+    background-color: #7b38d8;
+    border-radius: 10px;
+    color: #eeeeee;
+    text-align: center;   
+    cursor: pointer;
+
+}
+.buttt{
+    display: inline-block;
+    background-color:aqua;
+    border-radius: 10px;
+    color: #eeeeee;
+    text-align: center;   
+    cursor: pointer;
+}
